@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-
-import './GInput.css'
+import downIcon from '../../assets/icons/down_icon.svg'
+import upIcon from '../../assets/icons/up_icon.svg'
+import './GInput.scss'
 
 // props 参数：
 // --props 
@@ -43,6 +44,11 @@ class GSelect extends Component {
     this.handleSelectDown = this.handleSelectDownFn.bind(this)
     this.handleDropSelectClick = this.handleDropSelectClickFn.bind(this)
   }
+  get isDownHidden() {
+    const { isDownHidden } = this.state;
+    console.log(`counter changed, new value: ${isDownHidden}`);
+    return isDownHidden;
+  }
   UNSAFE_componentWillMount () {}
   componentDidMount () {
     if(!window.cancelSelectPopFn) {
@@ -65,6 +71,9 @@ class GSelect extends Component {
     }
   }
   closeDropDown ($downListBoxSelf) {
+    this.setState({
+      isDownHidden:true
+    })
     let selectDownWrap = document.querySelectorAll('.down-list-box:not(.hidden)')
     if(selectDownWrap && selectDownWrap.length > 0) {
       for (let i = 0; i < selectDownWrap.length; i++) {
@@ -229,6 +238,9 @@ class GSelect extends Component {
     }
     return error
   }
+  renderArrow(){
+    return this.isDownHidden ? <img src={downIcon} /> : <img src={upIcon} />
+  }
   render () {
     return (
       <div className={'select-outer ' + this.props.className + (this.state.hasError? ' error': '')} id={'select-' + this.state.GEelementIndex}>
@@ -236,7 +248,9 @@ class GSelect extends Component {
           <div className='g-input-box'>
             <input type='text' className='g-input' readOnly data-select='select' value={this.state.valueText}/>
           </div>
-          <div className='sel-down-arrow'></div>
+          <div className='sel-down-arrow'>
+            {this.renderArrow()}
+          </div>
         </div>
         <div className={this.state.isDownHidden ? 'down-list-box hidden' : 'down-list-box'}
              style={this.state.stylePosDownListBox.bottom ? this.state.stylePosDownListBox : {}}>

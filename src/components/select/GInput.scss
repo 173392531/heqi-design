@@ -20,28 +20,30 @@ html, body {
   }
   .select-outer {
     border: 1px solid #666;
+    border-radius: 4px;
   }
   .select-box, .select-outer {
     position: relative; display: inline-block;cursor: pointer; width: 100%;
   }
   .select-box > .g-input-box > .g-input {
-    cursor: pointer; border: 0; line-height: 22px; height: 22px; padding: 0; margin: 0;
+    cursor: pointer; border: 0; line-height: 40px; height: 40px; padding: 0; margin: 0;
   }
   .select-box > .g-input-box{
-    padding-right: 22px;
+    /* padding-right: 22px; */
   }
   .sel-down-arrow {
-    width: 18px; height: 18px; position: absolute; right: 0; top: 50%; margin-top: -9px;
-    background-color: brown;
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    img{
+      width: 100%;
+      height: 100%;
+    }
   }
   /* 禁止选中文本，双击arrow的时候，有时候会把下拉框中的文本选中，禁止arrow文本选中，可以避免这种发生这种情况 */
-  .sel-down-arrow {
-    -moz-user-select:none; /*火狐*/
-    -webkit-user-select:none; /*webkit浏览器*/
-    -ms-user-select:none; /*IE10*/
-    -khtml-user-select:none; /*早期浏览器*/
-    user-select:none;
-  }
+
   .down-list-box {
     position: absolute;left: -1px; width: 100%; z-index: 999;
     background-color: #fff; border: 1px solid #666;
@@ -50,10 +52,14 @@ html, body {
     line-height: 32px; padding: 0; text-align: center; margin: 0;
   }
   .data-ul {
-    line-height: 30px; max-height: 150px; overflow-y: auto;
+    line-height: 30px; 
+    max-height: 150px; 
+    overflow-y: auto;
+    list-style:none;
   }
   .data-ul li{
-      color: blue;
+      color: black;
+      text-align: left;
   }
   .data-ul > li:hover, .data-ul > li.checked {
     background-color: rgb(211, 208, 208);
@@ -66,4 +72,9 @@ html, body {
   }
   .select-outer > .error-msg {
     position: absolute; top: 100%; left: 0; width: 100%; line-height: 20px; color: #f00; font-size: small; z-index: 9;
+  }
+  ul{
+    margin-block-start: 0;
+    margin-block-end: 0;
+    padding-inline-start: 0;
   }
